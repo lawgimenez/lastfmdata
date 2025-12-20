@@ -17,24 +17,35 @@ struct ContentView: View {
     ]
     
     var body: some View {
-        VStack {
-            Text("Your Last.fm Top Albums")
-                .font(.largeTitle)
-            LazyHGrid(rows: rows) {
-                ForEach(arrayAlbums, id: \.id) { album in
-                    AsyncImage(url: URL(string: album.image.last!.text)) { image in
-                        image.image?.resizable()
-                            .aspectRatio(contentMode: .fit)
+        NavigationStack {
+            VStack {
+                Text("Your Last.fm Top Albums")
+                    .font(.largeTitle)
+                LazyHGrid(rows: rows) {
+                    ForEach(arrayAlbums, id: \.id) { album in
+                        AsyncImage(url: URL(string: album.image.last!.text)) { image in
+                            image.image?.resizable()
+                                .aspectRatio(contentMode: .fit)
+                        }
+                        .frame(maxWidth: 500, maxHeight: 500)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
-                    .frame(maxWidth: 500, maxHeight: 500)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
             }
+            .task {
+                await getTopAlbums()
+            }
+            .toolbar {
+                ToolbarItem(placement: .automatic) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "square.and.arrow.down.fill")
+                    }
+                }
+            }
+            .padding()
         }
-        .task {
-            await getTopAlbums()
-        }
-        .padding()
     }
     
     private func getTopAlbums() async {
