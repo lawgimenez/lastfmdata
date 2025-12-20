@@ -15,6 +15,7 @@
 		86460A762A598C090067C17F /* LastFMDataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86460A752A598C090067C17F /* LastFMDataUITests.swift */; };
 		86460A782A598C090067C17F /* LastFMDataUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86460A772A598C090067C17F /* LastFMDataUITestsLaunchTests.swift */; };
 		86460A882A598D310067C17F /* TopAlbums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86460A872A598D310067C17F /* TopAlbums.swift */; };
+		86EFA7482EF6219B00028597 /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 86EFA7472EF6219B00028597 /* Secrets.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		86460A752A598C090067C17F /* LastFMDataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastFMDataUITests.swift; sourceTree = "<group>"; };
 		86460A772A598C090067C17F /* LastFMDataUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastFMDataUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		86460A872A598D310067C17F /* TopAlbums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAlbums.swift; sourceTree = "<group>"; };
+		86EFA7472EF6219B00028597 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		86EFA7492EF622D300028597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +100,14 @@
 		86460A582A598C060067C17F /* LastFMData */ = {
 			isa = PBXGroup;
 			children = (
+				86EFA7492EF622D300028597 /* Info.plist */,
 				86460A862A598D1F0067C17F /* Models */,
 				86460A592A598C060067C17F /* LastFMDataApp.swift */,
 				86460A5B2A598C060067C17F /* ContentView.swift */,
 				86460A5D2A598C090067C17F /* Assets.xcassets */,
 				86460A622A598C090067C17F /* LastFMData.entitlements */,
 				86460A5F2A598C090067C17F /* Preview Content */,
+				86EFA7472EF6219B00028597 /* Secrets.xcconfig */,
 			);
 			path = LastFMData;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 			files = (
 				86460A612A598C090067C17F /* Preview Assets.xcassets in Resources */,
 				86460A5E2A598C090067C17F /* Assets.xcassets in Resources */,
+				86EFA7482EF6219B00028597 /* Secrets.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +435,7 @@
 		};
 		86460A7C2A598C090067C17F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86EFA7472EF6219B00028597 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -443,6 +450,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LastFMData/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -459,6 +467,7 @@
 		};
 		86460A7D2A598C090067C17F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86EFA7472EF6219B00028597 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -473,6 +482,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LastFMData/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

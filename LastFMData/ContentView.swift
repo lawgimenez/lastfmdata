@@ -36,32 +36,36 @@ struct ContentView: View {
     }
     
     private func getTopAlbums() async {
-        if let url = URL(string: "https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=xthekingisdeadx&api_key=[key-here]&format=json&period=7day&limit=8") {
-            print("url")
-            let session = URLSession.shared
-            let request = URLRequest(url: url)
-            print("request")
-            let task = session.dataTask(with: request) {
-                data, response, error in
-                if let error {
-                    print(error)
-                } else {
-                    if let data {
-                        do {
-                            let topAlbums = try JSONDecoder().decode(TopAlbums.self, from: data)
-                            arrayAlbums = topAlbums.topAlbum.album
-//                            print("topAlbums = \(topAlbums)")
-                        } catch {
-                            print("Parser error = \(error)")
-                        }
+        if let apiKey = Bundle.main.object(
+            forInfoDictionaryKey: "LastFMAPIKey"
+        ) as? String {
+            if let url = URL(string: "https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=xthekingisdeadx&api_key=\(apiKey)&format=json&period=7day&limit=8") {
+                print("url is \(url)")
+                let session = URLSession.shared
+                let request = URLRequest(url: url)
+                print("request")
+                let task = session.dataTask(with: request) {
+                    data, response, error in
+                    if let error {
+                        print(error)
                     } else {
-                        print("no data")
+                        if let data {
+                            do {
+                                let topAlbums = try JSONDecoder().decode(TopAlbums.self, from: data)
+                                arrayAlbums = topAlbums.topAlbum.album
+    //                            print("topAlbums = \(topAlbums)")
+                            } catch {
+                                print("Parser error = \(error)")
+                            }
+                        } else {
+                            print("no data")
+                        }
                     }
                 }
+                task.resume()
+            } else {
+                print("url error")
             }
-            task.resume()
-        } else {
-            print("url error")
         }
     }
 }
