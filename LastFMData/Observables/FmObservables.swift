@@ -17,7 +17,6 @@ class FmObservables {
             forInfoDictionaryKey: "LastFMAPIKey"
         ) as? String {
             if let url = URL(string: "https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=lawrencegimenez&api_key=\(apiKey)&format=json&period=7day&limit=8") {
-                print("url is \(url)")
                 let session = URLSession.shared
                 let request = URLRequest(url: url)
                 let task = session.dataTask(with: request) {
@@ -32,14 +31,10 @@ class FmObservables {
                             } catch {
                                 print("Parser error = \(error)")
                             }
-                        } else {
-                            print("no data")
                         }
                     }
                 }
                 task.resume()
-            } else {
-                print("url error")
             }
         }
     }

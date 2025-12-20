@@ -18,11 +18,9 @@ struct RemoteImage<Placeholder: View>: View {
 
     var body: some View {
         if let image = ImageCache.shared.image(for: url as NSURL) {
-            let _ = print("Image = \(image)")
             Image(nsImage: image)
                 .resizable()
         } else {
-            let _ = print("placeholder")
             AsyncImage(url: url) { image in
                 image.image?.resizable()
                     .aspectRatio(contentMode: .fit)

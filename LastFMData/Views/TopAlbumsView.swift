@@ -30,13 +30,6 @@ struct TopAlbumsView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: 500, maxHeight: 500)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
-                    
-//                    AsyncImage(url: URL(string: album.image.last!.text)) { image in
-//                        image.image?.resizable()
-//                            .aspectRatio(contentMode: .fit)
-//                    }
-//                    .frame(maxWidth: 500, maxHeight: 500)
-//                    .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
             }
         }
@@ -78,9 +71,7 @@ struct TopAlbumsView: View {
         guard let tiffData = nsImage.tiffRepresentation, let bitmap = NSBitmapImageRep(data: tiffData), let pngData = bitmap.representation(using: .png, properties: [:]) else {
             return
         }
-        print("PNG data found")
         let url = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0].appendingPathComponent("TopAlbums.png")
-        print("Saving to downloads")
         try pngData.write(to: url)
     }
 }
