@@ -12,20 +12,22 @@ struct ContentView: View {
     @State private var arrayAlbums = [TopAlbums.Album]()
     
     let rows = [
-        GridItem(.fixed(150), spacing: 150),
-        GridItem(.fixed(150)),
+        GridItem(.fixed(300), spacing: 10),
+        GridItem(.fixed(300)),
     ]
     
     var body: some View {
         VStack {
-            Text("Your top albums from 30 Jun 2023 — 6 Jul 2023")
+            Text("Your Last.fm Top Albums")
                 .font(.largeTitle)
-            Divider()
             LazyHGrid(rows: rows) {
                 ForEach(arrayAlbums, id: \.id) { album in
-                    let _ = print("album = \(album.image.last!.text)")
-                    AsyncImage(url: URL(string: album.image.last!.text))
-//                        .aspectRatio(contentMode: .fit)
+                    AsyncImage(url: URL(string: album.image.last!.text)) { image in
+                        image.image?.resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
+                    .frame(maxWidth: 500, maxHeight: 500)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
             }
         }
@@ -39,11 +41,10 @@ struct ContentView: View {
         if let apiKey = Bundle.main.object(
             forInfoDictionaryKey: "LastFMAPIKey"
         ) as? String {
-            if let url = URL(string: "https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=xthekingisdeadx&api_key=\(apiKey)&format=json&period=7day&limit=8") {
+            if let url = URL(string: "https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=lawrencegimenez&api_key=\(apiKey)&format=json&period=7day&limit=8") {
                 print("url is \(url)")
                 let session = URLSession.shared
                 let request = URLRequest(url: url)
-                print("request")
                 let task = session.dataTask(with: request) {
                     data, response, error in
                     if let error {
