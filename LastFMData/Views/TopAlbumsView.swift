@@ -23,12 +23,20 @@ struct TopAlbumsView: View {
                 .font(.largeTitle)
             LazyHGrid(rows: rows) {
                 ForEach(fmObservables.arrayAlbums, id: \.id) { album in
-                    AsyncImage(url: URL(string: album.image.last!.text)) { image in
-                        image.image?.resizable()
-                            .aspectRatio(contentMode: .fit)
+                    RemoteImage(url: URL(string: album.image.last!.text)!) {
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(.gray.opacity(0.2))
                     }
+                    .aspectRatio(contentMode: .fit)
                     .frame(maxWidth: 500, maxHeight: 500)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
+                    
+//                    AsyncImage(url: URL(string: album.image.last!.text)) { image in
+//                        image.image?.resizable()
+//                            .aspectRatio(contentMode: .fit)
+//                    }
+//                    .frame(maxWidth: 500, maxHeight: 500)
+//                    .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
             }
         }

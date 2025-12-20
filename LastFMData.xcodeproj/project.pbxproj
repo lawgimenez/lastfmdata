@@ -52,6 +52,7 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		86EFA7D82EF62CBF00028597 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
 		86EFA7D92EF62CCA00028597 /* Observables */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Observables; sourceTree = "<group>"; };
+		86EFA7DE2EF6394400028597 /* Utils */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Utils; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +103,7 @@
 		86460A582A598C060067C17F /* LastFMData */ = {
 			isa = PBXGroup;
 			children = (
+				86EFA7DE2EF6394400028597 /* Utils */,
 				86EFA7D92EF62CCA00028597 /* Observables */,
 				86EFA7D82EF62CBF00028597 /* Views */,
 				86EFA7492EF622D300028597 /* Info.plist */,
@@ -166,6 +168,7 @@
 			fileSystemSynchronizedGroups = (
 				86EFA7D82EF62CBF00028597 /* Views */,
 				86EFA7D92EF62CCA00028597 /* Observables */,
+				86EFA7DE2EF6394400028597 /* Utils */,
 			);
 			name = LastFMData;
 			productName = LastFMData;
