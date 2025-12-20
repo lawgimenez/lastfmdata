@@ -38,7 +38,7 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .automatic) {
                     Button {
-                        
+                        saveTopAlbumsAsImage()
                     } label: {
                         Image(systemName: "square.and.arrow.down.fill")
                     }
@@ -79,6 +79,22 @@ struct ContentView: View {
                 print("url error")
             }
         }
+    }
+    
+    private func saveTopAlbumsAsImage() {
+        let contentView = ContentView()
+        let renderer = ImageRenderer(content: contentView)
+        renderer.scale = 2.0
+        guard let nsImage = renderer.nsImage else {
+            return
+        }
+        guard let tiffData = nsImage.tiffRepresentation, let bitmap = NSBitmapImageRep(data: tiffData), let pngData = bitmap.representation(using: .png, properties: [:]) else {
+            return
+        }
+        print("PNG data found")
+        let url = FileManager.default.urls(for: .picturesDirectory, in: .userDomainMask)[0].appendingPathComponent("TopAlbums.png")
+        print("Saving to downloads")
+        try? pngData.write(to: url)
     }
 }
 
