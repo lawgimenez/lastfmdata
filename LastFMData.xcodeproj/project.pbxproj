@@ -3,12 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		86460A5A2A598C060067C17F /* LastFMDataApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86460A592A598C060067C17F /* LastFMDataApp.swift */; };
-		86460A5C2A598C060067C17F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86460A5B2A598C060067C17F /* ContentView.swift */; };
 		86460A5E2A598C090067C17F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86460A5D2A598C090067C17F /* Assets.xcassets */; };
 		86460A612A598C090067C17F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86460A602A598C090067C17F /* Preview Assets.xcassets */; };
 		86460A6C2A598C090067C17F /* LastFMDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86460A6B2A598C090067C17F /* LastFMDataTests.swift */; };
@@ -37,7 +36,6 @@
 /* Begin PBXFileReference section */
 		86460A562A598C060067C17F /* LastFMData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LastFMData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86460A592A598C060067C17F /* LastFMDataApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastFMDataApp.swift; sourceTree = "<group>"; };
-		86460A5B2A598C060067C17F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		86460A5D2A598C090067C17F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86460A602A598C090067C17F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		86460A622A598C090067C17F /* LastFMData.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LastFMData.entitlements; sourceTree = "<group>"; };
@@ -50,6 +48,11 @@
 		86EFA7472EF6219B00028597 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		86EFA7492EF622D300028597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		86EFA7D82EF62CBF00028597 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		86EFA7D92EF62CCA00028597 /* Observables */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Observables; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		86460A532A598C060067C17F /* Frameworks */ = {
@@ -99,10 +102,11 @@
 		86460A582A598C060067C17F /* LastFMData */ = {
 			isa = PBXGroup;
 			children = (
+				86EFA7D92EF62CCA00028597 /* Observables */,
+				86EFA7D82EF62CBF00028597 /* Views */,
 				86EFA7492EF622D300028597 /* Info.plist */,
 				86460A862A598D1F0067C17F /* Models */,
 				86460A592A598C060067C17F /* LastFMDataApp.swift */,
-				86460A5B2A598C060067C17F /* ContentView.swift */,
 				86460A5D2A598C090067C17F /* Assets.xcassets */,
 				86460A622A598C090067C17F /* LastFMData.entitlements */,
 				86460A5F2A598C090067C17F /* Preview Content */,
@@ -158,6 +162,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				86EFA7D82EF62CBF00028597 /* Views */,
+				86EFA7D92EF62CCA00028597 /* Observables */,
 			);
 			name = LastFMData;
 			productName = LastFMData;
@@ -274,7 +282,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86460A5C2A598C060067C17F /* ContentView.swift in Sources */,
 				86460A5A2A598C060067C17F /* LastFMDataApp.swift in Sources */,
 				86460A882A598D310067C17F /* TopAlbums.swift in Sources */,
 			);
@@ -456,6 +463,14 @@
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LastFMData/Info.plist;
@@ -492,6 +507,14 @@
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = YES;
 				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LastFMData/Info.plist;
