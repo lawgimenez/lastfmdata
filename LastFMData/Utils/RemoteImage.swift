@@ -8,28 +8,28 @@
 import SwiftUI
 
 struct RemoteImage<Placeholder: View>: View {
-    @StateObject private var loader: ImageLoader
-    private let placeholder: Placeholder
+    let url: URL
+    let placeholder: Placeholder
 
-    init(
-        url: URL,
-        @ViewBuilder placeholder: () -> Placeholder
-    ) {
-        _loader = StateObject(wrappedValue: ImageLoader(url: url))
+    init(url: URL, @ViewBuilder placeholder: () -> Placeholder) {
+        self.url = url
         self.placeholder = placeholder()
     }
 
     var body: some View {
-        Group {
-            if let image = loader.image {
-                Image(nsImage: image)
-                    .resizable()
-            } else {
-                placeholder
+        if let image = ImageCache.shared.image(for: url as NSURL) {
+            let _ = print("Image = \(image)")
+            Image(nsImage: image)
+                .resizable()
+        } else {
+            let _ = print("placeholder")
+            AsyncImage(url: url) { image in
+                image.image?.resizable()
+                    .aspectRatio(contentMode: .fit)
             }
-        }
-        .onAppear {
-            loader.load()
+            .frame(maxWidth: 500, maxHeight: 500)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
         }
     }
 }
+

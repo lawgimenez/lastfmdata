@@ -43,20 +43,32 @@ struct TopAlbumsView: View {
         .toolbar {
             ToolbarItem(placement: .automatic) {
                 Button {
-                    do {
-                        try saveTopAlbumsAsImage()
-                    } catch {
-                        print("Saving error: \(error)")
+                    Task {
+                        do {
+                            try await saveTopAlbumsAsImage()
+                        } catch {
+                            print("Saving error: \(error)")
+                        }
                     }
                 } label: {
                     Image(systemName: "square.and.arrow.down.fill")
                 }
             }
         }
+        .task {
+            let urls = fmObservables.arrayAlbums.compactMap {
+                URL(string: $0.image.last?.text ?? "")
+            }
+            await ImagePreloader.shared.preload(urls: urls)
+        }
         .padding()
     }
     
-    private func saveTopAlbumsAsImage() throws {
+    private func saveTopAlbumsAsImage() async throws {
+        let urls = fmObservables.arrayAlbums.compactMap {
+            URL(string: $0.image.last?.text ?? "")
+        }
+        await ImagePreloader.shared.preload(urls: urls)
         let topAlbumsView = body
         let renderer = ImageRenderer(content: topAlbumsView)
         renderer.scale = 2.0
