@@ -22,7 +22,8 @@ struct TopAlbumsView: View {
             Text("Your Last.fm Top Albums")
                 .font(.largeTitle)
             LazyHGrid(rows: rows) {
-                ForEach(fmObservables.arrayAlbums, id: \.id) { album in
+                ForEach(fmObservables.arrayAlbums.indices, id: \.self) { index in
+                    let album = fmObservables.arrayAlbums[index]
                     RemoteImage(url: URL(string: album.image.last!.text)!) {
                         RoundedRectangle(cornerRadius: 12)
                             .fill(.gray.opacity(0.2))
@@ -34,7 +35,12 @@ struct TopAlbumsView: View {
             }
         }
         .toolbar {
-            ToolbarItem(placement: .automatic) {
+            ToolbarItemGroup(placement: .automatic) {
+                Button {
+                    
+                } label: {
+                    Image(systemName: "arrow.clockwise.circle.fill")
+                }
                 Button {
                     Task {
                         do {
