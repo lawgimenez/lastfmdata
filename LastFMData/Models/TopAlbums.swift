@@ -17,13 +17,13 @@ struct TopAlbums: Decodable {
     
     struct TopAlbum: Decodable, Identifiable {
         
-        let id = UUID()
+        var id = UUID()
         var album: [Album]
     }
     
     struct Album: Decodable, Identifiable {
         
-        let id = UUID()
+        var id = UUID()
         var artist: Artist
         var playCount: String
         var image: [Image]
