@@ -37,7 +37,9 @@ struct TopAlbumsView: View {
         .toolbar {
             ToolbarItemGroup(placement: .automatic) {
                 Button {
-                    
+                    Task {
+                        await getTopAlbums()
+                    }
                 } label: {
                     Image(systemName: "arrow.clockwise.circle.fill")
                 }
@@ -55,19 +57,13 @@ struct TopAlbumsView: View {
             }
         }
         .task {
-            let urls = fmObservables.arrayAlbums.compactMap {
-                URL(string: $0.image.last?.text ?? "")
-            }
-            await ImagePreloader.shared.preload(urls: urls)
+            await getTopAlbums()
         }
         .padding()
     }
     
     private func saveTopAlbumsAsImage() async throws {
-        let urls = fmObservables.arrayAlbums.compactMap {
-            URL(string: $0.image.last?.text ?? "")
-        }
-        await ImagePreloader.shared.preload(urls: urls)
+        await getTopAlbums()
         let topAlbumsView = body
         let renderer = ImageRenderer(content: topAlbumsView)
         renderer.scale = 2.0
@@ -79,6 +75,13 @@ struct TopAlbumsView: View {
         }
         let url = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0].appendingPathComponent("TopAlbums.png")
         try pngData.write(to: url)
+    }
+    
+    private func getTopAlbums() async {
+        let urls = fmObservables.arrayAlbums.compactMap {
+            URL(string: $0.image.last?.text ?? "")
+        }
+        await ImagePreloader.shared.preload(urls: urls)
     }
 }
 
