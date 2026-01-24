@@ -120,7 +120,10 @@ struct TopAlbumsView: View {
             return
         }
         let url = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask)[0].appendingPathComponent("TopAlbums.png")
-        try pngData.write(to: url)
+        if FileManager.default.fileExists(atPath: url.path) {
+            try FileManager.default.removeItem(at: url)
+        }
+        try pngData.write(to: url, options: .atomic)
     }
     
     private func getTopAlbums() async {
