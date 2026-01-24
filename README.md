@@ -4,7 +4,7 @@ This is macOS native app written in SwiftUI, where a [Last.fm](https://www.last.
 
 - Built using Xcode Version 26.2 (17C52)
 
-![App Screenshot](Assets/lastfmdata.png)
+![Top Albums Screenshot](Assets/lastfmdata.png)
 
 
 ### How to setup Secrets.xcconfig
